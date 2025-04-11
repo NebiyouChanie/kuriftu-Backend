@@ -36,6 +36,21 @@ exports.register = async (userData) => {
     return user;
   };
 
+  exports.login = async (userData) => {
+    const { password, email } = userData;
+  
+    // Check for duplicate phone number
+    const user = await User.findOne({ email });
+    if (!user) {
+      throw new customError("Customer with this email doesn't exists.", 400);
+    }
+
+    if(user.password != password){
+      throw new customError("Incorrect password", 401);
+    }
+    return user;
+  };
+
 // get all User
 exports.getAllUsers = async () => {  
     const customers = await User.find().sort({ createdAt: -1 }); ;

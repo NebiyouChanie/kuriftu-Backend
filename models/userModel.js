@@ -1,52 +1,71 @@
-
 const { default: mongoose } = require("mongoose");
  
 const UserSchema = new mongoose.Schema({
-
-    firstName :{ 
+    firstName: { 
         type: String, 
         trim: true,
     },
-
-    lastName :{ 
+    lastName: { 
         type: String, 
         trim: true, 
     },
-    
-    subcity :{ 
+    password: { 
         type: String, 
-        required:false,
-        enum: ['Addis Ketema', 'Akaki Kaliti','Arada','Lemi Kura','Bole','Gullele','Kirkos','Kolfe Keranio','Ledeta','Nifas Silk Lafto','Yeka','N/A'],
-        default: "N/A" 
+        required: [true, 'Password is required'],
+        minlength: 8, 
     },
-    
-    area :{ 
-        type: String, 
-        trim: true, 
-    },
-
+    role: {
+        type: String,
+        required: true,
+        enum: ['guest', "chef", 'waiter', 'admin', 'receptionist'],
+        default: 'guest'
+    },  
     email: {
         type: String,
         trim: true,
         lowercase: true,
-        match: [/^\S+@\S+\.\S+$/, "Please enter a valid email address"], // Validate email format
-        default: undefined, // Default to null if not provided
-        sparse: true, // Only index non-null values
-        unique: true, // Enforce uniqueness for non-null emails
-      },
-      
-    phoneNumber :{ 
+        match: [/^\S+@\S+\.\S+$/, "Please enter a valid email address"],  
+        default: undefined,  
+        sparse: true, 
+        unique: true,  
+    },  
+    phoneNumber: { 
         type: String, 
         required: [true, 'Phone number is required'],
         match: [/^\+?[1-9]\d{1,14}$/, 'Please enter a valid phone number.']
     },
-    
-    createdAt :{ 
+    feedback: [{
+        fromUserId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true
+        },
+        comment: {
+            type: String,
+            trim: true
+        },
+        rating: {
+            type: Number,
+            min: 1,
+            max: 5,
+            required: true
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now
+        }
+    }],
+    averageRating: {
+        type: Number,
+        min: 0,
+        max: 5,
+        default: 0
+    },
+    createdAt: { 
         type: Date, 
-        default :  Date.now 
+        default: Date.now 
     },
 });
-
 
 const User = mongoose.model('User', UserSchema);
 

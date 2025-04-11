@@ -40,30 +40,20 @@ app.use(express.json());
 /******ROUTES*****/
 
 // USER Routes
-app.use('/api/v1/users',require('./routes/UserRoutes'));
+app.use('/api/users',require('./routes/UserRoutes'));
 
 //FOODITEM Routes
-app.use('/api/v1/foodItems',require('./routes/foodItemRoutes'));
+app.use('/api/foodItems',require('./routes/foodItemRoutes'));
 
-//RSERVARTION Routes
-app.use('/api/v1/reservations',require('./routes/reservationRoutes'));
-
+ 
 // ORDER Routes
-app.use('/api/v1/orders',require('./routes/orderRoutes'));
+app.use('/api/orders',require('./routes/orderRoutes'));
 
 // CATEGOREY Routes
-app.use('/api/v1/categories',require('./routes/categoryRoutes'));
+app.use('/api/categories',require('./routes/categoryRoutes'));
 
-// Locations Routes
-app.use('/api/v1/locations',require('./routes/locationRoutes'));
-
-// ANALYTICS Routes
-app.use('/api/v1/analytics',require('./routes/analyticsRoutes'));
-
-// DASHBOARD Routes
-app.use('/api/v1/dashboard',require('./routes/analyticsRoutes'));
-
-
+ 
+ 
 
 
 

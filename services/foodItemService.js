@@ -22,7 +22,7 @@ exports.insertFoodItem = async (foodData) => {
   if (foodItem) {
     throw new customError("Food item Already exist", 400);
   }
-  const category = await Category.findById(foodData.category ); // Find category by name
+  const category = await Category.findById(foodData.category );  
     if (!category) {
       throw new customError("Category not found!", 400);
     }

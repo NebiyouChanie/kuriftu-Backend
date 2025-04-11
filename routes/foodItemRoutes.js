@@ -27,5 +27,7 @@ router.delete("/:id",foodItemController.deleteFoodItem)
 router.patch("/:id",foodItemController.updateFoodItem)
 
  
+// Add feedback to a food item
+router.post('/feedback', foodItemController.addFeedback);
 
 module.exports = router
