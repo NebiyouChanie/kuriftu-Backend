@@ -42,6 +42,7 @@ app.use('/api/ratings', require('./routes/ratingRoutes'));
 
 // USER Routes
 app.use('/api/users',require('./routes/UserRoutes'));
+app.use("/api/analytics", require('./routes/analyticsRoutes'));
 
 //FOODITEM Routes
 app.use('/api/foodItems',require('./routes/foodItemRoutes'));
