@@ -35,6 +35,7 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use('/api/ratings', require('./routes/ratingRoutes'));
 
 
 /******ROUTES*****/
@@ -44,6 +45,7 @@ app.use('/api/users',require('./routes/UserRoutes'));
 
 //FOODITEM Routes
 app.use('/api/foodItems',require('./routes/foodItemRoutes'));
+app.use('/api/waiters', require('./routes/ratingRoutes'));
 
  
 // ORDER Routes
